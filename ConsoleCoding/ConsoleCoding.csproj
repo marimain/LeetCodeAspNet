@@ -46,6 +46,7 @@
     <Compile Include="AddTwoNumber_002\AddTwoNumbercs.cs" />
     <Compile Include="FindNWord_1160\Class1.cs" />
     <Compile Include="FindNWord_1160\Class2.cs" />
+    <Compile Include="FizzBuzz_412\FizzBuzz.cs" />
     <Compile Include="InitListNode.cs" />
     <Compile Include="ListNode.cs" />
     <Compile Include="ListNodeFunctions.cs" />

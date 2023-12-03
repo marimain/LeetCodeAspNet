@@ -17,35 +17,12 @@ namespace ConsoleCoding.AddTwoNumber_002
 
             InitListNode oInit = new InitListNode();
 
-            int[] ar1 = { 8, 3, 2 };
-            int[] ar2 = { 9,2,1 };
+            
+            int[] ar1 = {3,7};
+            int[] ar2 = { 9,2 };
             ListNode l11 = oInit.SetListNode(ar1);
             ListNode l21 = oInit.SetListNode(ar2);
-           
-            /*
-            //ListNode l17 = new ListNode(9);
-            //ListNode l16 = new ListNode(9);
-            //ListNode l15 = new ListNode(9);
-            //ListNode l14 = new ListNode(9);
-            ListNode l13 = new ListNode(2);
-            ListNode l12 = new ListNode(3);
-            ListNode l11 = new ListNode(8);
-            l11.next = l12;
-            l12.next = l13;
-            //l13.next = l14;
-            //l14.next = l15;
-            //l15.next = l16;
-            //l16.next = l17;
-
-            //ListNode l24 = new ListNode(9);
-            ListNode l23 = new ListNode(1);
-            ListNode l22 = new ListNode(2);
-            ListNode l21 = new ListNode(9);
-            l21.next = l22;
-            l22.next = l23;
-            //l23.next = l24;
-            */
-
+ 
             ListNode ret = Process(l11, l21);
             Debug.WriteLine(ret);
         }
@@ -75,6 +52,12 @@ namespace ConsoleCoding.AddTwoNumber_002
 
                 if (null == l1.next && null == l2.next)
                 {
+                    if (up > 0)
+                    {
+                        ListNode t = nd;
+                        nd = new ListNode(up);
+                        nd.next = t;
+                    }
                     break;
                 }
                 else
@@ -94,30 +77,33 @@ namespace ConsoleCoding.AddTwoNumber_002
             return ret;
             
         }
-        private ListNode AddSignleList(ListNode nd, ListNode lst)
+        private ListNode AddSignleList(ListNode nd, ListNode lst, int up=0)
         {
             int v1 = 0;
             int v2 = 0;
             int tmp = 0;
-            int up = 0;
 
             while (true)
             {
                 if (null == lst.next)
                 {
-                    
+                    if (up > 0)
+                    {
+                        ListNode t = nd;
+                        nd = new ListNode(up);
+                        nd.next = t;
+                    }
                     break;
                 }
                 else
                 {
                     lst = lst.next;
                     v1 = lst.val;
-                    tmp = (nd.val + v1) >= 10 ? (nd.val + v1) % 10 : (nd.val + v1);
-                    up = (nd.val + v1) / 10;
-                    nd.val = tmp;
+                    tmp = (up + v1) >= 10 ? (up + v1) % 10 : (up + v1);
+                    up = (up + v1) / 10;
 
                     ListNode t = nd;
-                    nd = new ListNode(up);
+                    nd = new ListNode(tmp);
                     nd.next = t;
                 }
                
@@ -133,20 +119,26 @@ namespace ConsoleCoding.AddTwoNumber_002
 
             while (true)
             {
-  
+
                 if (null == l1.next && null == l2.next)
                 {
+                    if (up > 0)
+                    {
+                        ListNode t = nd;
+                        nd = new ListNode(up);
+                        nd.next = t;
+                    }
                     break;
                 }
 
                 if (null == l1.next && null != l2.next)
                 {
-                    nd = AddSignleList(nd, l2);
+                    nd = AddSignleList(nd, l2, up);
                     break;
                 }
                 else if (null == l2.next && null != l1.next)
                 {
-                    nd = AddSignleList(nd, l1);
+                    nd = AddSignleList(nd, l1, up);
                     break;
                 }
                 else
@@ -162,13 +154,6 @@ namespace ConsoleCoding.AddTwoNumber_002
                     ListNode tnd = nd;
                     nd = new ListNode(tmp);
                     nd.next = tnd;
-
-                   if ((l1.next == null || l2.next == null) && up != 0)
-                    {
-                        ListNode tnd2 = nd;
-                        nd = new ListNode(up);
-                        nd.next = tnd2;
-                    }
 
                 }
 

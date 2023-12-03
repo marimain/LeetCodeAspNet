@@ -1,5 +1,6 @@
 ﻿using ConsoleCoding.AddTwoNumber_002;
 using ConsoleCoding.FindNWord_1160;
+using ConsoleCoding.FizzBuzz_412;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,8 +13,8 @@ namespace ConsoleCoding
     {
         static void Main(string[] args)
         {
-            AddTwoNumbercs c=new AddTwoNumbercs();
-            
+            //AddTwoNumbercs c=new AddTwoNumbercs();
+            FizzBuzz oFizzBuzz = new FizzBuzz();
         }
         static void Main_back(string[] args)
         {
