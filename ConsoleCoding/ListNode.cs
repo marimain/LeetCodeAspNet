@@ -24,7 +24,6 @@ namespace ConsoleCoding
 			val = x;
 			next = nextNode;
 		}
-
-
 	}
+	
 }

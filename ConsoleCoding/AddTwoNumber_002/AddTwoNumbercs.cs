@@ -58,8 +58,8 @@ namespace ConsoleCoding.AddTwoNumber_002
             int tmp = (v1 + v2)>=10?(v1 + v2) % 10:(v1 + v2);
             int up = (v1 + v2) / 10;
 
-            ListNode nd0 = new ListNode(tmp);
-            ListNode nd = new ListNode(up);
+            ListNode nd = new ListNode(tmp);
+            //ListNode nd = new ListNode(up);
             
             //if (tmp == 0 && up == 0)
             //{
@@ -79,7 +79,7 @@ namespace ConsoleCoding.AddTwoNumber_002
                 }
                 else
                 {
-                    nd = AddList(nd, l1, l2);
+                    nd = AddList(nd, l1, l2, up);
                     break;
                 }
             }
@@ -90,7 +90,7 @@ namespace ConsoleCoding.AddTwoNumber_002
             {
                 ret = reverseAsc(nd.next, ret);
             }
-            
+            ListNodeFunctions.List(ret);
             return ret;
             
         }
@@ -124,16 +124,21 @@ namespace ConsoleCoding.AddTwoNumber_002
             }
             return nd;
         }
-        private ListNode AddList(ListNode nd, ListNode l1,ListNode l2)
+        private ListNode AddList(ListNode nd, ListNode l1,ListNode l2, int up=0)
         {
             int v1 = 0;
             int v2 = 0;
             int tmp = 0;
-            int up = 0;
+            
 
             while (true)
             {
   
+                if (null == l1.next && null == l2.next)
+                {
+                    break;
+                }
+
                 if (null == l1.next && null != l2.next)
                 {
                     nd = AddSignleList(nd, l2);
@@ -149,25 +154,24 @@ namespace ConsoleCoding.AddTwoNumber_002
 
                     l1 = l1.next;
                     l2 = l2.next;
+                    //Sum up up and l1, l2
+                    tmp = (up + l1.val + l2.val) >= 10 ? (up + l1.val + l2.val) % 10 : (up + l1.val + l2.val);
+                    //Next up. 
+                    up = (up + l1.val + l2.val) / 10;
 
-                    tmp = (nd.val + l1.val + l2.val) >= 10 ? (nd.val + l1.val + l2.val) % 10 : (nd.val + l1.val + l2.val);
-                    up = (nd.val + l1.val + l2.val) / 10;
+                    ListNode tnd = nd;
+                    nd = new ListNode(tmp);
+                    nd.next = tnd;
 
-                    nd.val = tmp;
-
-                    if ((l1.next != null || l2.next != null) && up != 0)
+                   if ((l1.next == null || l2.next == null) && up != 0)
                     {
-                        ListNode t = nd;
+                        ListNode tnd2 = nd;
                         nd = new ListNode(up);
-                        nd.next = t;
+                        nd.next = tnd2;
                     }
 
                 }
 
-            }
-            if (nd.val == 0)
-            {
-                return nd.next;
             }
             return nd;
         }

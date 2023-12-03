@@ -48,6 +48,7 @@
     <Compile Include="FindNWord_1160\Class2.cs" />
     <Compile Include="InitListNode.cs" />
     <Compile Include="ListNode.cs" />
+    <Compile Include="ListNodeFunctions.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
